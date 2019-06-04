@@ -1,0 +1,6 @@
+framework module Pods_kfvz_firebase2 {
+  umbrella header "Pods-kfvz-firebase2-umbrella.h"
+
+  export *
+  module * { export * }
+}
