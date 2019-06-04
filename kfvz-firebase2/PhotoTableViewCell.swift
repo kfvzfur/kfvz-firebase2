@@ -55,8 +55,10 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
             if let error = error {
                 print(error)
             }
+            self.table2.reloadData()
         }
-      //  table2.reloadData()
+       
+        
     }
  
   
@@ -84,11 +86,14 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
         if mytext.count >= 1
         {
           cell.isHidden = false
-        
+         
            
                let text = mytext[indexPath.row]
                   cell.messagelable.text = text
                   return cell
+        }else{
+//            cell.isHidden = true
+//            table2.rowHeight = 0
         }
        cell.reloadInputViews()
         return cell

@@ -17,17 +17,18 @@ class PhotoTableViewController: UITableViewController{
     var messageid:String = ""
     var photos = [QueryDocumentSnapshot]()
     var mymessage:String = "1"
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-      getdata()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl = UIRefreshControl()
        // tblDemo.addSubview(refreshControl)
         
+        getdata()
     }
     
     // MARK: - Table view data source
@@ -59,10 +60,23 @@ class PhotoTableViewController: UITableViewController{
     
     
     @IBAction func mypush(_ sender: Any) {
-        getdata()
-        
+//        let db = Firestore.firestore()
+//        db.collection("photos").order(by: "date", descending: true).getDocuments { (querySnapshot, error) in
+//            if let querySnapshot = querySnapshot {
+//
+//                self.photos = querySnapshot.documents
+//                DispatchQueue.main.async {
+//
+//                    self.table.beginUpdates()
+//                    self.table.reloadRows(at: self.table.indexPathsForVisibleRows!, with: .none)
+//                   self.table.endUpdates()
+//                }
+//            } else {
+//                print("error")
+//            }
+//        }
+//        getdata()
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -72,13 +86,22 @@ class PhotoTableViewController: UITableViewController{
         // Configure the cell...
         
         let photo = photos[indexPath.row]
-       if let _ = photo.data()["message2"] as? String{
+      
               cell.photo2 = photo
+        if let mytext = (photo.data()["message2"] as? String)?.components(separatedBy: "\t") {
+            //print(table.frame.height)94
+            if mytext.count < 4
+                {
+                table.rowHeight = CGFloat(349 + (mytext.count) * 44)
+               }
+             else{
+            
+                 table.rowHeight = 349 + 176
+                 }
+        } else{
+            table.rowHeight = 349
+            }
         
-       }else{
-             cell.photo2 = nil
-        
-        }
          cell.table2.reloadData()
         
         print("data", photo.data())
@@ -121,14 +144,13 @@ class PhotoTableViewController: UITableViewController{
   func getdata()
     {
         let db = Firestore.firestore()
-        db.collection("photos").order(by: "date", descending: true).getDocuments { (querySnapshot, error) in
+        db.collection("photos").order(by: "date", descending: true).addSnapshotListener { (querySnapshot, error) in
             if let querySnapshot = querySnapshot {
                 
                 self.photos = querySnapshot.documents
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                self.tableView.reloadData()
                 
-                }
+                
             } else {
                 print("error")
             }
