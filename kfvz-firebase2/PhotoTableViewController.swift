@@ -101,8 +101,8 @@ class PhotoTableViewController: UITableViewController{
         } else{
             table.rowHeight = 349
             }
-        
-         cell.table2.reloadData()
+        cell.table2.reloadData()
+        // cell.table2.reloadRows(at: [indexPath], with: .automatic)
         
         print("data", photo.data())
         messageid = photo.documentID

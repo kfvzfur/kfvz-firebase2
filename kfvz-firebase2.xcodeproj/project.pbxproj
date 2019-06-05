@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E976CAF22A7864100AE700C /* TalkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E976CAE22A7864100AE700C /* TalkTableViewController.swift */; };
+		4E976CB122A7866200AE700C /* TalkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E976CB022A7866200AE700C /* TalkCell.swift */; };
 		4EB4C8312293A25B0021BD50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB4C8302293A25B0021BD50 /* AppDelegate.swift */; };
 		4EB4C8332293A25B0021BD50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB4C8322293A25B0021BD50 /* ViewController.swift */; };
 		4EB4C8362293A25B0021BD50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EB4C8342293A25B0021BD50 /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 /* Begin PBXFileReference section */
 		270780B1E8EC5EBCD1C3548B /* Pods_kfvz_firebase2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kfvz_firebase2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DA4C63D2FD47DB62B2F219E /* Pods-kfvz-firebase2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kfvz-firebase2.debug.xcconfig"; path = "Target Support Files/Pods-kfvz-firebase2/Pods-kfvz-firebase2.debug.xcconfig"; sourceTree = "<group>"; };
+		4E976CAE22A7864100AE700C /* TalkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkTableViewController.swift; sourceTree = "<group>"; };
+		4E976CB022A7866200AE700C /* TalkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkCell.swift; sourceTree = "<group>"; };
 		4EB4C82D2293A25B0021BD50 /* kfvz-firebase2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kfvz-firebase2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EB4C8302293A25B0021BD50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EB4C8322293A25B0021BD50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 				4EB4C8462293A5C00021BD50 /* PhotoTableViewController.swift */,
 				4EB4C8342293A25B0021BD50 /* Main.storyboard */,
 				4EE0074C22A00C2E0015C3EE /* Talkcellcontroller.swift */,
+				4E976CB022A7866200AE700C /* TalkCell.swift */,
+				4E976CAE22A7864100AE700C /* TalkTableViewController.swift */,
 				4EB4C8372293A25C0021BD50 /* Assets.xcassets */,
 				4EB4C8392293A25C0021BD50 /* LaunchScreen.storyboard */,
 				4EB4C83C2293A25C0021BD50 /* Info.plist */,
@@ -237,11 +243,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E976CB122A7866200AE700C /* TalkCell.swift in Sources */,
 				4EB4C8492293AA8E0021BD50 /* PhotoTableViewCell.swift in Sources */,
 				4EB4C8332293A25B0021BD50 /* ViewController.swift in Sources */,
 				4EB4C8472293A5C00021BD50 /* PhotoTableViewController.swift in Sources */,
 				4EB4C8312293A25B0021BD50 /* AppDelegate.swift in Sources */,
 				4EE0074D22A00C2E0015C3EE /* Talkcellcontroller.swift in Sources */,
+				4E976CAF22A7864100AE700C /* TalkTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

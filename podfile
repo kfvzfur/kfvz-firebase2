@@ -8,6 +8,7 @@ target 'kfvz-firebase2' do
   # Pods for kfvz-firebase2
    pod 'Firebase/Core'
     pod 'Kingfisher'
+ 
     pod 'Firebase/Firestore'
     pod 'Firebase/Storage'
 end

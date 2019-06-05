@@ -24,7 +24,7 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
     var photo2:QueryDocumentSnapshot?
     var mytext = [String]()
     let db = Firestore.firestore()
-    
+      var myindex:IndexPath?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -43,9 +43,10 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
         var message3:String
         // messageid = photo2.documentID
         let messageid = photo2?.documentID
-        
+      
         message3 = (photo2?.data()["message2"] as? String) ?? ""
         message3 += mymessage.text! + "\t"
+        mytext.append(mymessage.text!)
         let data: [String: Any] = ["message2": message3]
         //  var photoReference: DocumentReference?
         print("這次的id 是：\(messageid!)")
@@ -55,11 +56,18 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
             if let error = error {
                 print(error)
             }
-            self.table2.reloadData()
+            self.mymessage.text = ""
+            
+          //  self.table2.reloadData()
+          //  table2.reloadRows(at: [IndexPath], with: .fade)
+           // self.table2.cellForRow(at: myindex)
+         //   table2.reloadRows(at: myindex, with: .automatic)
+//           table2.reloadRows(at: , with: <#T##UITableView.RowAnimation#>)
         }
        
         
     }
+    
  
   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,6 +97,7 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
          
            
                let text = mytext[indexPath.row]
+            myindex = indexPath
                   cell.messagelable.text = text
                   return cell
         }else{
