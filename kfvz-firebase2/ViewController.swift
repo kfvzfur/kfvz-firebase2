@@ -9,7 +9,8 @@
 import UIKit
 import Firebase
 class ViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate { 
-
+    var userid = "D4leVs5N3oLd222xxRzO"
+    var idebtify = 2
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var textField: UITextField!
@@ -20,9 +21,15 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
     func upload() {
         activityIndicatorView.startAnimating()
         let db = Firestore.firestore()
-        let data: [String: Any] = ["message": textField.text!, "date": Date()]
+        var identify2:String
+        if idebtify == 1{
+            identify2 = "Internet_Celebrity_ID"
+        }else{
+             identify2 = "Vendor_ID"
+        }
+        let data: [String: Any] = ["Post_Content": textField.text!, "date": Date(),"\(identify2)":userid,"identify":idebtify]
         var photoReference: DocumentReference?
-        photoReference = db.collection("photos").addDocument(data: data) { (error) in
+        photoReference = db.collection("News_Feed").addDocument(data: data) { (error) in
             guard error == nil else {
                 self.activityIndicatorView.stopAnimating()
                 return
@@ -50,7 +57,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
                             self.activityIndicatorView.stopAnimating()
                             return
                         }
-                        photoReference?.updateData(["photoUrl": downloadURL.absoluteString])
+                        photoReference?.updateData(["Picture": downloadURL.absoluteString])
                         self.navigationController?.popViewController(animated: true)
                     })
                 }

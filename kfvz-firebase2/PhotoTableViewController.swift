@@ -9,14 +9,15 @@
 import UIKit
 import Firebase
 class PhotoTableViewController: UITableViewController{
-    
+    var userid = "lbp0Z3dATAdv4JGwybKG"
     
     @IBOutlet var table: UITableView!
     
     @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
     var messageid:String = ""
     var photos = [QueryDocumentSnapshot]()
-    var mymessage:String = "1"
+   var users = [QueryDocumentSnapshot]()
+    var mymessage:String = ""
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
 //
@@ -59,7 +60,7 @@ class PhotoTableViewController: UITableViewController{
     }
     
     
-    @IBAction func mypush(_ sender: Any) {
+    @IBAction func mypush2(_ sender: Any) {
 //        let db = Firestore.firestore()
 //        db.collection("photos").order(by: "date", descending: true).getDocuments { (querySnapshot, error) in
 //            if let querySnapshot = querySnapshot {
@@ -77,7 +78,7 @@ class PhotoTableViewController: UITableViewController{
 //        }
 //        getdata()
     }
-    
+    var index = 0
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "mycell", for: indexPath) as! PhotoTableViewCell
@@ -86,27 +87,57 @@ class PhotoTableViewController: UITableViewController{
         // Configure the cell...
         
         let photo = photos[indexPath.row]
-      
+        index = indexPath.row
+    
               cell.photo2 = photo
         if let mytext = (photo.data()["message2"] as? String)?.components(separatedBy: "\t") {
             //print(table.frame.height)94
             if mytext.count < 4
                 {
-                table.rowHeight = CGFloat(349 + (mytext.count) * 44)
+                table.rowHeight = CGFloat(359 + (mytext.count) * 44)
                }
              else{
             
-                 table.rowHeight = 349 + 176
+                 table.rowHeight = 369 + 176
                  }
         } else{
-            table.rowHeight = 349
+            table.rowHeight = 400
             }
         cell.table2.reloadData()
-        // cell.table2.reloadRows(at: [indexPath], with: .automatic)
+         
         
         print("data", photo.data())
-        messageid = photo.documentID
-        cell.celllable.text = photo.data()["message"] as? String
+        var identify:Int
+        var identify2:String
+        identify = (photo.data()["identify"] as? Int)!
+       
+        if identify == 1{
+                identify2 = "Internet_Celebrity_ID"
+            }else{
+                identify2 = "Vendor_ID"
+            }
+        let userid = photo.data()[identify2] as? String
+       // users.data("\(userid)")
+        let db = Firestore.firestore()
+        cell.userpicture.image = nil
+        db.collection("users").document(userid!).getDocument { (querySnapshot, error) in
+            cell.username.text = (querySnapshot?.data()!["name"] as! String)
+            
+
+            if let urlString2 = querySnapshot?.data()!["sticker"] as? String {
+                print("will fetch")
+                self.fetchImage(url: URL(string: urlString2)) { (image) in
+                    DispatchQueue.main.async {
+                        if let currentIndexPath = tableView.indexPath(for: cell), currentIndexPath == indexPath {
+                            cell.userpicture.image = image
+                        }
+                    }
+                }
+            }
+        }
+        cell.btpush.addTarget(self, action: #selector(click(sender:)), for: .touchUpInside)
+       //print ("測式：\(users.count)")
+        cell.celllable.text = photo.data()["Post_Content"] as? String
         if let timeStamp = photo.data()["date"] as? Timestamp {
             
             let date =  Date(timeIntervalSince1970: TimeInterval(timeStamp.seconds))
@@ -117,9 +148,9 @@ class PhotoTableViewController: UITableViewController{
         }
         
         cell.celphoto.image = nil
-        if let urlString = photo.data()["photoUrl"] as? String {
+        if let urlString = photo.data()["Picture"] as? String {
             print("will fetch")
-            fetchImage(url: URL(string: urlString)) { (image) in
+            self.fetchImage(url: URL(string: urlString)) { (image) in
                 DispatchQueue.main.async {
                     if let currentIndexPath = tableView.indexPath(for: cell), currentIndexPath == indexPath {
                         cell.celphoto.image = image
@@ -139,12 +170,44 @@ class PhotoTableViewController: UITableViewController{
         return cell
         
     }
+    @objc func click(sender:UIButton){
+        
+        let indexpath = IndexPath(row: index, section: 0)
+        let photo = photos[index]
+
+//       e let cell = tableView.cellForRow(at: indexpath) as! PhotoTablViewCell
+        let talkTableViewController = self.storyboard?.instantiateViewController(withIdentifier: "TalkTableViewController") as! TalkTableViewController
+        talkTableViewController.photo2 = photo
+        
+        
+    }
     
+    @IBAction func mypush(_ sender: Any) {
+        
+        
+    }
+   
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //collectionView.indexPathsForSelectedItems
+        
+        //UICollectionView.IndexDisplayMode.RawValue.self
+        
+        
+//        let indexPath = tableView.indexPathForSelectedRow
+//        print(indexPath)
+//            
+//        let photo = photos[indexPath!.row]
+//        print(photo.documentID)
+//        let VC = segue.destination as! TalkTableViewController
+//        VC.photo2 = photo
+        
+    }
     
   func getdata()
     {
         let db = Firestore.firestore()
-        db.collection("photos").order(by: "date", descending: true).addSnapshotListener { (querySnapshot, error) in
+        db.collection("News_Feed").order(by: "date", descending: true).addSnapshotListener{ (querySnapshot, error) in
             if let querySnapshot = querySnapshot {
                 
                 self.photos = querySnapshot.documents

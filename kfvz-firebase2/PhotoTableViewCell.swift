@@ -11,7 +11,9 @@ import Firebase
 class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
     
     
+    @IBOutlet weak var userpicture: UIImageView!
     
+    @IBOutlet weak var username: UILabel!
     @IBOutlet weak var table2: UITableView!
     @IBOutlet weak var timelable: UILabel!
     @IBOutlet weak var celllable: UILabel!
@@ -21,6 +23,7 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
     @IBOutlet weak var mymessage: UITextField!
     
     @IBOutlet weak var mypush: UIButton!
+    
     var photo2:QueryDocumentSnapshot?
     var mytext = [String]()
     let db = Firestore.firestore()
@@ -51,14 +54,14 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
         //  var photoReference: DocumentReference?
         print("這次的id 是：\(messageid!)")
         
-        db.collection("photos").document(messageid!).updateData(data){ (error) in
+        db.collection("News_Feed").document(messageid!).updateData(data){ (error) in
             
             if let error = error {
                 print(error)
             }
             self.mymessage.text = ""
             
-          //  self.table2.reloadData()
+           self.table2.reloadData()
           //  table2.reloadRows(at: [IndexPath], with: .fade)
            // self.table2.cellForRow(at: myindex)
          //   table2.reloadRows(at: myindex, with: .automatic)
@@ -69,7 +72,8 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
     }
     
  
-  
+    @IBOutlet weak var btpush: UIButton!
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let message3 = photo2?.data()["message2"] as? String{
             mytext = message3.components(separatedBy: "\t")
