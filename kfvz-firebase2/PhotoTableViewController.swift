@@ -16,6 +16,7 @@ class PhotoTableViewController: UITableViewController{
     @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
     var messageid:String = ""
     var photos = [QueryDocumentSnapshot]()
+    var photo3:QueryDocumentSnapshot?
    var users = [QueryDocumentSnapshot]()
     var mymessage:String = ""
 //    override func viewWillAppear(_ animated: Bool) {
@@ -28,7 +29,7 @@ class PhotoTableViewController: UITableViewController{
         super.viewDidLoad()
         refreshControl = UIRefreshControl()
        // tblDemo.addSubview(refreshControl)
-        
+       // print("本頁id\(photo3?.documentID)")
         getdata()
     }
     
@@ -60,24 +61,6 @@ class PhotoTableViewController: UITableViewController{
     }
     
     
-    @IBAction func mypush2(_ sender: Any) {
-//        let db = Firestore.firestore()
-//        db.collection("photos").order(by: "date", descending: true).getDocuments { (querySnapshot, error) in
-//            if let querySnapshot = querySnapshot {
-//
-//                self.photos = querySnapshot.documents
-//                DispatchQueue.main.async {
-//
-//                    self.table.beginUpdates()
-//                    self.table.reloadRows(at: self.table.indexPathsForVisibleRows!, with: .none)
-//                   self.table.endUpdates()
-//                }
-//            } else {
-//                print("error")
-//            }
-//        }
-//        getdata()
-    }
     var index = 0
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -88,7 +71,7 @@ class PhotoTableViewController: UITableViewController{
         
         let photo = photos[indexPath.row]
         index = indexPath.row
-    
+           photo3 = photo
               cell.photo2 = photo
         if let mytext = (photo.data()["message2"] as? String)?.components(separatedBy: "\t") {
             //print(table.frame.height)94
@@ -135,7 +118,8 @@ class PhotoTableViewController: UITableViewController{
                 }
             }
         }
-        cell.btpush.addTarget(self, action: #selector(click(sender:)), for: .touchUpInside)
+        cell.btpush.tag = indexPath.row
+       cell.btpush.addTarget(self, action: #selector(click(sender:)), for: .touchUpInside)
        //print ("測式：\(users.count)")
         cell.celllable.text = photo.data()["Post_Content"] as? String
         if let timeStamp = photo.data()["date"] as? Timestamp {
@@ -160,49 +144,52 @@ class PhotoTableViewController: UITableViewController{
             
             
         }
-        // button
-        //        cell.mypush.tag = indexPath.section*1000 + indexPath.row
-        //        cell.mypush.addTarget(self, action: Selector(("mypush")), for: UIControl.Event.touchUpInside)
-        //        mymessage = cell.mymessage.text!
-        
-        
+    
         
         return cell
         
     }
     @objc func click(sender:UIButton){
         
-        let indexpath = IndexPath(row: index, section: 0)
-        let photo = photos[index]
+       // let indexpath = IndexPath(row: index, section: 0)
+        let photo = photos[sender.tag]
 
-//       e let cell = tableView.cellForRow(at: indexpath) as! PhotoTablViewCell
-        let talkTableViewController = self.storyboard?.instantiateViewController(withIdentifier: "TalkTableViewController") as! TalkTableViewController
-        talkTableViewController.photo2 = photo
+       //let cell = tableView.cellForRow(at: indexpath) as! PhotoTableViewCell
+        let talkTableViewController = storyboard?.instantiateViewController(withIdentifier:"TalkTableViewController") as! TalkTableViewController
+       // let talkTableViewController2 = UIStoryboard
+       // cell.photo2 = (photo3![indexpath] as! QueryDocumentSnapshot)
+        talkTableViewController.photo3 = photo
         
-        
+        print("cell的id：\(talkTableViewController.photo3?.documentID)")
     }
     
-    @IBAction func mypush(_ sender: Any) {
-        
-        
-    }
-   
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //collectionView.indexPathsForSelectedItems
-        
-        //UICollectionView.IndexDisplayMode.RawValue.self
-        
-        
-//        let indexPath = tableView.indexPathForSelectedRow
-//        print(indexPath)
-//            
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let tag = sender as! Int
+//        let controller = segue.destination as! TalkTableViewController
+//        controller.photo3 = photos[tag]
+//        
+//    }
+//
+//        }
+//    }
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        performSegue(withIdentifier: "testyou", sender: self)
+//    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "testyou"{
+//            if let indexPath = tableView.indexPathForSelectedRow{
+//                let eng = segue.destination as! TalkTableViewController
+//                eng.photo3 = photos[indexPath.row]
+//            }
+//        }
 //        let photo = photos[indexPath!.row]
 //        print(photo.documentID)
 //        let VC = segue.destination as! TalkTableViewController
 //        VC.photo2 = photo
         
-    }
+//    }
     
   func getdata()
     {

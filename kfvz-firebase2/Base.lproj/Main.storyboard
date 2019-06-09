@@ -89,7 +89,7 @@
                                             <rect key="frame" x="332" y="358" width="31" height="30"/>
                                             <state key="normal" title="留言"/>
                                             <connections>
-                                                <action selector="mypush:" destination="23W-AX-kTD" eventType="touchUpInside" id="bEF-rS-VwU"/>
+                                                <action selector="testpush:" destination="zGD-Y7-1tP" eventType="touchUpInside" id="NAD-c0-6Wj"/>
                                                 <segue destination="zId-LC-omV" kind="show" id="obu-hC-maG"/>
                                             </connections>
                                         </button>

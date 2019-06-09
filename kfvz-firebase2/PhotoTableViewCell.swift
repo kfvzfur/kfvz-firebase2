@@ -37,6 +37,9 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
     }
     
     
+    @IBAction func testpush(_ sender: Any) {
+        print("本頁：\(photo2!.documentID)")
+    }
     
     
     
