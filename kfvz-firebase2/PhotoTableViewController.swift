@@ -10,30 +10,45 @@ import UIKit
 import Firebase
 class PhotoTableViewController: UITableViewController{
     var userid = "lbp0Z3dATAdv4JGwybKG"
-    
+    var useridentify = 1
+    var useridname = "Internet_Celebrity_ID"
     @IBOutlet var table: UITableView!
+    var data1IsGet = false
+    var data2IsGet = false
+  
+    
     
     @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
     var messageid:String = ""
     var photos = [QueryDocumentSnapshot]()
-    var photo3:QueryDocumentSnapshot?
-   var users = [QueryDocumentSnapshot]()
-    var mymessage:String = ""
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//
-//    }
+    var users = [QueryDocumentSnapshot]()
+    var praises = [QueryDocumentSnapshot]()
+    var praise:QueryDocumentSnapshot?
+    var mymessage = ""
+    var praisemessage = [String]()
+    var praisesid = [String:String]()
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        super.viewWillAppear(animated)
+    //
+    //
+    //    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl = UIRefreshControl()
-       // tblDemo.addSubview(refreshControl)
-       // print("本頁id\(photo3?.documentID)")
+        // tblDemo.addSubview(refreshControl)
+        // print("本頁id\(photo3?.documentID)")
+        //getdata()
+        getpraise(userid2: userid)
         getdata()
+        //tableView.reloadData()
+    
     }
     
     // MARK: - Table view data source
+    
+    
+  
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -68,45 +83,38 @@ class PhotoTableViewController: UITableViewController{
         
         //messageid = reference.child(childRef.key)
         // Configure the cell...
-        
-        let photo = photos[indexPath.row]
-        index = indexPath.row
-           photo3 = photo
-              cell.photo2 = photo
-        if let mytext = (photo.data()["message2"] as? String)?.components(separatedBy: "\t") {
-            //print(table.frame.height)94
-            if mytext.count < 4
-                {
-                table.rowHeight = CGFloat(359 + (mytext.count) * 44)
-               }
-             else{
+      //  if data1IsGet == true && data2IsGet == true{
             
-                 table.rowHeight = 369 + 176
-                 }
-        } else{
-            table.rowHeight = 400
-            }
-        cell.table2.reloadData()
-         
         
-        print("data", photo.data())
         var identify:Int
         var identify2:String
-        identify = (photo.data()["identify"] as? Int)!
+        let photo = photos[indexPath.row]
        
+        index = indexPath.row
+       // cell.photo2 = photo
+        
+            table.rowHeight = 400
+        
+        //cell.table2.reloadData()
+        
+        
+      
+       //抓取message哪位使用者的id記錄
+        identify = (photo.data()["identify"] as? Int)!
+        
         if identify == 1{
-                identify2 = "Internet_Celebrity_ID"
-            }else{
-                identify2 = "Vendor_ID"
-            }
-        let userid = photo.data()[identify2] as? String
-       // users.data("\(userid)")
+            identify2 = "Internet_Celebrity_ID"
+        }else{
+            identify2 = "Vendor_ID"
+        }
+        let userid2 = photo.data()[identify2] as? String
+        // users.data("\(userid)")
         let db = Firestore.firestore()
         cell.userpicture.image = nil
-        db.collection("users").document(userid!).getDocument { (querySnapshot, error) in
+        db.collection("users").document(userid2!).getDocument { (querySnapshot, error) in
             cell.username.text = (querySnapshot?.data()!["name"] as! String)
             
-
+            
             if let urlString2 = querySnapshot?.data()!["sticker"] as? String {
                 print("will fetch")
                 self.fetchImage(url: URL(string: urlString2)) { (image) in
@@ -118,9 +126,44 @@ class PhotoTableViewController: UITableViewController{
                 }
             }
         }
+        cell.praiselable.tag = indexPath.row
+        cell.praiselable.addTarget(self, action: #selector(click2(sender:)), for: .touchUpInside)
+        
+        
+        
+       print("目標：\(photo.documentID)")
+        //print("test:\(photos[0].documentID)")
+    // getpraise(stroyid: photo.documentID, userid: useridname)
+        
+        //print("testP:\(praises![0].documentID)")
+        if praises.isEmpty{
+                        cell.praiselable.setTitle("讚", for:.normal)
+                        print("那這裡咧")
+                       
+                    }else{
+                      //print("新的id\(getpraise(stroyid: photo.documentID, userid: useridname))")
+            for i in praises{
+                //print("神奇\(i.data()["Story_ID"] as! String)")
+                if i.data()["Story_ID"] as! String == photo.documentID{
+
+                        //print("testP:\(praises[0].documentID)")
+                        cell.praiselable.setTitle("收回讚", for: .normal)
+                        praisesid.updateValue(i.documentID, forKey: photo.documentID)
+                        print("成功")
+
+                    break
+                   }
+               else{
+                 cell.praiselable.setTitle("讚", for:.normal)
+            }
+            }
+            
+            }
+
         cell.btpush.tag = indexPath.row
-       cell.btpush.addTarget(self, action: #selector(click(sender:)), for: .touchUpInside)
-       //print ("測式：\(users.count)")
+        cell.btpush.addTarget(self, action: #selector(click(sender:)), for: .touchUpInside)
+        //print ("測式：\(users.count)")
+        
         cell.celllable.text = photo.data()["Post_Content"] as? String
         if let timeStamp = photo.data()["date"] as? Timestamp {
             
@@ -144,67 +187,107 @@ class PhotoTableViewController: UITableViewController{
             
             
         }
-    
         
+        
+       // }
         return cell
         
     }
+   @objc func click2(sender:UIButton){
+   let Button = sender as UIButton
+    let db = Firestore.firestore()
+     let photo = photos[sender.tag]
+    var identify2:String
+    //  identify = (photo2!.data()["identify"] as? Int)!
+    
+    if useridentify == 1{
+        identify2 = "Internet_Celebrity_ID"
+    }else{
+        identify2 = "Vendor_ID"
+    }
+//     == photo.documentID
+    if let x = praisesid[photo.documentID] {
+       praisesid.removeValue(forKey:photo.documentID)
+        db.collection("Praise").document(x).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+                
+            }
+        }
+       Button.setTitle("讚", for: .normal)
+    }else{
+        
+        let data: [String: Any] = [identify2:userid,"identify":useridentify,"Story_ID":photo.documentID,"Messageidentify":0]
+        let ref = db.collection("Praise")
+        let id = ref.document().documentID
+    ref.document(id).setData(data){ (error) in
+        
+        if let error = error {
+            print(error)
+          }
+        
+      }
+        
+        print("取到了：\(id)")
+         praisesid.updateValue(id, forKey: photo.documentID)
+        Button.setTitle("收回讚", for: .normal)
+        
+    }
+    
+}
     @objc func click(sender:UIButton){
         
-       // let indexpath = IndexPath(row: index, section: 0)
-        let photo = photos[sender.tag]
-
-       //let cell = tableView.cellForRow(at: indexpath) as! PhotoTableViewCell
-        let talkTableViewController = storyboard?.instantiateViewController(withIdentifier:"TalkTableViewController") as! TalkTableViewController
-       // let talkTableViewController2 = UIStoryboard
-       // cell.photo2 = (photo3![indexpath] as! QueryDocumentSnapshot)
-        talkTableViewController.photo3 = photo
         
-        print("cell的id：\(talkTableViewController.photo3?.documentID)")
+        let photo = photos[sender.tag]
+        let talkTableViewController = storyboard?.instantiateViewController(withIdentifier:"talkViewController") as! talkViewController
+        //不拉線直接傳值
+        navigationController?.pushViewController(talkTableViewController, animated: true)
+       
+        talkTableViewController.photo2 = photo
+        
+       // print("cell的id：\(talkTableViewController.photo2?.documentID)")
     }
     
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let tag = sender as! Int
-//        let controller = segue.destination as! TalkTableViewController
-//        controller.photo3 = photos[tag]
-//        
-//    }
-//
-//        }
-//    }
-    
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "testyou", sender: self)
-//    }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "testyou"{
-//            if let indexPath = tableView.indexPathForSelectedRow{
-//                let eng = segue.destination as! TalkTableViewController
-//                eng.photo3 = photos[indexPath.row]
-//            }
-//        }
-//        let photo = photos[indexPath!.row]
-//        print(photo.documentID)
-//        let VC = segue.destination as! TalkTableViewController
-//        VC.photo2 = photo
-        
-//    }
-    
-  func getdata()
+   
+    func getdata()
     {
         let db = Firestore.firestore()
         db.collection("News_Feed").order(by: "date", descending: true).addSnapshotListener{ (querySnapshot, error) in
             if let querySnapshot = querySnapshot {
                 
                 self.photos = querySnapshot.documents
+                
                 self.tableView.reloadData()
                 
                 
             } else {
                 print("error")
             }
+          //  self.data1IsGet = true
         }
+       
+    }
+    func getpraise(userid2:String){
+        
+        let db = Firestore.firestore()
+        db.collection("Praise").whereField(useridname, isEqualTo: userid2).whereField("Messageidentify", isEqualTo: 0).addSnapshotListener{ (querySnapshot, error) in
+            if let querySnapshot = querySnapshot {
+
+               self.praises = querySnapshot.documents
+                
+            } else {
+                print("error")
+              
+            }
+            //self.data2IsGet = true
+            
+        }
+        
+        
+     
     }
     /*
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

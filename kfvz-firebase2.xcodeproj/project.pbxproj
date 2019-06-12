@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E804B5922B0CA2000D6DD34 /* talkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E804B5822B0CA2000D6DD34 /* talkViewController.swift */; };
 		4E976CAF22A7864100AE700C /* TalkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E976CAE22A7864100AE700C /* TalkTableViewController.swift */; };
 		4E976CB122A7866200AE700C /* TalkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E976CB022A7866200AE700C /* TalkCell.swift */; };
 		4EB4C8312293A25B0021BD50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB4C8302293A25B0021BD50 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		270780B1E8EC5EBCD1C3548B /* Pods_kfvz_firebase2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kfvz_firebase2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DA4C63D2FD47DB62B2F219E /* Pods-kfvz-firebase2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kfvz-firebase2.debug.xcconfig"; path = "Target Support Files/Pods-kfvz-firebase2/Pods-kfvz-firebase2.debug.xcconfig"; sourceTree = "<group>"; };
+		4E804B5822B0CA2000D6DD34 /* talkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talkViewController.swift; sourceTree = "<group>"; };
 		4E976CAE22A7864100AE700C /* TalkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkTableViewController.swift; sourceTree = "<group>"; };
 		4E976CB022A7866200AE700C /* TalkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkCell.swift; sourceTree = "<group>"; };
 		4EB4C82D2293A25B0021BD50 /* kfvz-firebase2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kfvz-firebase2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,12 +89,13 @@
 				4EB4C8462293A5C00021BD50 /* PhotoTableViewController.swift */,
 				4EB4C8342293A25B0021BD50 /* Main.storyboard */,
 				4E976CB022A7866200AE700C /* TalkCell.swift */,
-				4E976CAE22A7864100AE700C /* TalkTableViewController.swift */,
+				4E804B5822B0CA2000D6DD34 /* talkViewController.swift */,
 				4EB4C8372293A25C0021BD50 /* Assets.xcassets */,
 				4EB4C8392293A25C0021BD50 /* LaunchScreen.storyboard */,
 				4EB4C83C2293A25C0021BD50 /* Info.plist */,
 				4EB4C8422293A2C40021BD50 /* GoogleService-Info.plist */,
 				4EE0074C22A00C2E0015C3EE /* Talkcellcontroller.swift */,
+				4E976CAE22A7864100AE700C /* TalkTableViewController.swift */,
 			);
 			path = "kfvz-firebase2";
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				4EB4C8472293A5C00021BD50 /* PhotoTableViewController.swift in Sources */,
 				4EB4C8312293A25B0021BD50 /* AppDelegate.swift in Sources */,
 				4EE0074D22A00C2E0015C3EE /* Talkcellcontroller.swift in Sources */,
+				4E804B5922B0CA2000D6DD34 /* talkViewController.swift in Sources */,
 				4E976CAF22A7864100AE700C /* TalkTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

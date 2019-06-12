@@ -20,6 +20,8 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
     @IBOutlet weak var celphoto: UIImageView!
     
     
+    @IBOutlet weak var praiselable: UIButton!
+    
     @IBOutlet weak var mymessage: UITextField!
     
     @IBOutlet weak var mypush: UIButton!
@@ -38,7 +40,7 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
     
     
     @IBAction func testpush(_ sender: Any) {
-        print("本頁：\(photo2!.documentID)")
+//        print("本頁：\(photo2!.documentID)")
     }
     
     
