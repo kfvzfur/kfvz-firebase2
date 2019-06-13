@@ -100,20 +100,20 @@ class PhotoTableViewCell: UITableViewCell,UITableViewDataSource,UITableViewDeleg
         
         
         
-        if mytext.count >= 1
-        {
-          cell.isHidden = false
-         
-           
-               let text = mytext[indexPath.row]
-            myindex = indexPath
-                  cell.messagelable.text = text
-                  return cell
-        }else{
-//            cell.isHidden = true
-//            table2.rowHeight = 0
-        }
-       cell.reloadInputViews()
+//        if mytext.count >= 1
+//        {
+//          cell.isHidden = false
+//         
+//           
+//               let text = mytext[indexPath.row]
+//            myindex = indexPath
+//                  cell.messagelable.text = text
+//                  return cell
+//        }else{
+////            cell.isHidden = true
+////            table2.rowHeight = 0
+//        }
+//       cell.reloadInputViews()
         return cell
     }
     //

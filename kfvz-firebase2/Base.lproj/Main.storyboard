@@ -79,9 +79,6 @@
                                                             <constraint firstItem="ekY-7C-pka" firstAttribute="leading" secondItem="6rK-IY-CMv" secondAttribute="leading" id="mnI-Sl-nrS"/>
                                                         </constraints>
                                                     </tableViewCellContentView>
-                                                    <connections>
-                                                        <outlet property="messagelable" destination="ekY-7C-pka" id="sT2-7n-eol"/>
-                                                    </connections>
                                                 </tableViewCell>
                                             </prototypes>
                                         </tableView>
@@ -399,7 +396,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="talkcell3" rowHeight="72" id="4It-aA-5bv" customClass="TalkCell" customModule="kfvz_firebase2" customModuleProvider="target">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="talkcell3" rowHeight="72" id="4It-aA-5bv" customClass="Talkcellcontroller" customModule="kfvz_firebase2" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="28" width="361" height="72"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4It-aA-5bv" id="SfM-Nb-8h7">
@@ -452,9 +449,9 @@
                                                                 </constraints>
                                                             </tableViewCellContentView>
                                                             <connections>
-                                                                <outlet property="Talkmessage2" destination="ghL-zx-6MW" id="OJr-DB-QC3"/>
-                                                                <outlet property="sticker2" destination="288-4g-PIq" id="2Y6-DY-hb9"/>
-                                                                <outlet property="username2" destination="BrT-yH-NHR" id="1P9-mo-48g"/>
+                                                                <outlet property="sticker2" destination="288-4g-PIq" id="BH2-dn-a1p"/>
+                                                                <outlet property="talkmessage2" destination="ghL-zx-6MW" id="07M-2Z-HWk"/>
+                                                                <outlet property="username2" destination="BrT-yH-NHR" id="JRJ-gD-Y6s"/>
                                                             </connections>
                                                         </tableViewCell>
                                                     </prototypes>

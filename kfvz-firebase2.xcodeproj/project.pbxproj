@@ -90,11 +90,11 @@
 				4EB4C8342293A25B0021BD50 /* Main.storyboard */,
 				4E976CB022A7866200AE700C /* TalkCell.swift */,
 				4E804B5822B0CA2000D6DD34 /* talkViewController.swift */,
+				4EE0074C22A00C2E0015C3EE /* Talkcellcontroller.swift */,
 				4EB4C8372293A25C0021BD50 /* Assets.xcassets */,
 				4EB4C8392293A25C0021BD50 /* LaunchScreen.storyboard */,
 				4EB4C83C2293A25C0021BD50 /* Info.plist */,
 				4EB4C8422293A2C40021BD50 /* GoogleService-Info.plist */,
-				4EE0074C22A00C2E0015C3EE /* Talkcellcontroller.swift */,
 				4E976CAE22A7864100AE700C /* TalkTableViewController.swift */,
 			);
 			path = "kfvz-firebase2";

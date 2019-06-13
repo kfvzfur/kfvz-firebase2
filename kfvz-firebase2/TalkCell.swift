@@ -9,6 +9,8 @@
 import UIKit
 
 class TalkCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
+  
+    
    
     @IBOutlet weak var btpraise: UIButton!
     @IBOutlet weak var btreply: UIButton!
@@ -23,11 +25,10 @@ class TalkCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet weak var talktable2: UITableView!
     
-    @IBOutlet weak var sticker2: UIImageView!
     
-    @IBOutlet weak var username2: UILabel!
+   
     
-    @IBOutlet weak var Talkmessage2: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -42,12 +43,13 @@ class TalkCell: UITableViewCell,UITableViewDataSource,UITableViewDelegate {
         // Configure the view for the selected state
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "talkcell3", for: indexPath) as! Talkcellcontroller
+        return cell
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
     
 
 

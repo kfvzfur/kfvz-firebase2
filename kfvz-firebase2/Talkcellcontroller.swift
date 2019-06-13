@@ -10,7 +10,10 @@ import UIKit
 
 class Talkcellcontroller: UITableViewCell {
 
-    @IBOutlet weak var messagelable: UILabel!
+    @IBOutlet weak var talkmessage2: UILabel!
+    @IBOutlet weak var username2: UILabel!
+    @IBOutlet weak var sticker2: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
