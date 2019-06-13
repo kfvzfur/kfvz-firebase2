@@ -17,7 +17,7 @@ class talkViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var photo3:QueryDocumentSnapshot?
     var message2 = [QueryDocumentSnapshot]()
      let db = Firestore.firestore()
-    var praises = [QueryDocumentSnapshot]()
+    var praises2 = [QueryDocumentSnapshot]()
     var praise:QueryDocumentSnapshot?
      var praisesid = [String:String]()
     @IBOutlet weak var tftalk: UITextField!
@@ -25,11 +25,13 @@ class talkViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getpraise(userid2: useridname)
-        getdata()
+        
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        getpraise(userid2: useridname)
+        getdata()
+    }
 
     @IBAction func mypush(_ sender: Any) {
         message2.removeAll()
@@ -50,7 +52,8 @@ class talkViewController: UIViewController,UITableViewDataSource,UITableViewDele
             }
             self.tftalk.text = ""
             self.message2.removeAll()
-            //self.tableView.reloadData()
+           self.getdata()
+            
             
             }
         }
@@ -141,13 +144,13 @@ class talkViewController: UIViewController,UITableViewDataSource,UITableViewDele
         cell.talkpraise.tag = indexPath.row
         cell.talkpraise.addTarget(self, action: #selector(click3(sender:)), for: .touchUpInside)
         
-        if praises.isEmpty{
+        if praises2.isEmpty{
             cell.talkpraise.setTitle("讚", for:.normal)
             print("那這裡咧")
             
         }else{
             //print("新的id\(getpraise(stroyid: photo.documentID, userid: useridname))")
-            for i in praises{
+            for i in praises2{
                 if i.data()["MessageId"] as! String == message.documentID{
                     
                     //print("testP:\(praises[0].documentID)")
@@ -233,10 +236,10 @@ class talkViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func getpraise(userid2:String){
         
         let db = Firestore.firestore()
-        db.collection("Praise").whereField(useridname, isEqualTo: userid).whereField("Messageidentify", isEqualTo: 1).addSnapshotListener{ (querySnapshot, error) in DispatchQueue.main.async{
+        db.collection("Praise").whereField(useridname, isEqualTo: userid).whereField("Messageidentify", isEqualTo: 1).addSnapshotListener{ (querySnapshot, error) in
             if let querySnapshot = querySnapshot {
                 
-                self.praises = querySnapshot.documents
+                self.praises2 = querySnapshot.documents
                 
             } else {
                 print("error")
@@ -244,7 +247,7 @@ class talkViewController: UIViewController,UITableViewDataSource,UITableViewDele
             }
             
             }
-        }
+        
         
         
         

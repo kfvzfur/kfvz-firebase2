@@ -333,15 +333,15 @@
                                     <constraint firstItem="Wgg-RJ-R7h" firstAttribute="top" secondItem="TQ0-Jw-mze" secondAttribute="top" constant="10" id="TeV-3V-Qdu"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X82-Oq-bMC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="talktable" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X82-Oq-bMC">
                                 <rect key="frame" x="0.0" y="44" width="414" height="778"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="talkcell2" rowHeight="131" id="ECn-Yh-sdJ" customClass="TalkCell" customModule="kfvz_firebase2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="131"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="talkcell2" rowHeight="307" id="ECn-Yh-sdJ" customClass="TalkCell" customModule="kfvz_firebase2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="307"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ECn-Yh-sdJ" id="g2p-6e-FdD">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="131"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="307"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ew-2R-BEj">
@@ -394,6 +394,71 @@
                                                     </constraints>
                                                     <state key="normal" title="回覆"/>
                                                 </button>
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="talktable2" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3aD-Lh-6Ro">
+                                                    <rect key="frame" x="53" y="91" width="361" height="167"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <prototypes>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="talkcell3" rowHeight="72" id="4It-aA-5bv" customClass="TalkCell" customModule="kfvz_firebase2" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="28" width="361" height="72"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4It-aA-5bv" id="SfM-Nb-8h7">
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="71.5"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="288-4g-PIq" userLabel="Sticker2">
+                                                                        <rect key="frame" x="10" y="10" width="33" height="33"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="44" id="8sL-rK-MZe"/>
+                                                                            <constraint firstAttribute="width" constant="44" id="Gjk-v4-HCe"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="22"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrT-yH-NHR" userLabel="Username2">
+                                                                        <rect key="frame" x="51" y="16" width="42" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghL-zx-6MW" userLabel="Talkmessage2">
+                                                                        <rect key="frame" x="108" y="15" width="244" height="21"/>
+                                                                        <color key="backgroundColor" white="0.77244718310000005" alpha="0.28336817790000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="342" id="RhQ-ES-Xp8"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="10"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="ghL-zx-6MW" secondAttribute="trailing" constant="10" id="DPV-Ty-mQA"/>
+                                                                    <constraint firstItem="BrT-yH-NHR" firstAttribute="top" secondItem="288-4g-PIq" secondAttribute="top" id="GYI-9k-IOy"/>
+                                                                    <constraint firstItem="288-4g-PIq" firstAttribute="leading" secondItem="SfM-Nb-8h7" secondAttribute="leading" constant="10" id="Zwz-ft-nCN"/>
+                                                                    <constraint firstItem="ghL-zx-6MW" firstAttribute="leading" secondItem="BrT-yH-NHR" secondAttribute="leading" id="b90-yz-tNj"/>
+                                                                    <constraint firstItem="ghL-zx-6MW" firstAttribute="top" secondItem="BrT-yH-NHR" secondAttribute="bottom" constant="8" id="fMu-kl-r8O"/>
+                                                                    <constraint firstItem="BrT-yH-NHR" firstAttribute="leading" secondItem="288-4g-PIq" secondAttribute="trailing" constant="8" id="hUV-1X-F90"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="BrT-yH-NHR" secondAttribute="trailing" constant="285" id="xZ2-XU-n7l"/>
+                                                                    <constraint firstItem="288-4g-PIq" firstAttribute="top" secondItem="SfM-Nb-8h7" secondAttribute="top" constant="10" id="zKK-bC-vrD"/>
+                                                                </constraints>
+                                                            </tableViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="Talkmessage2" destination="ghL-zx-6MW" id="OJr-DB-QC3"/>
+                                                                <outlet property="sticker2" destination="288-4g-PIq" id="2Y6-DY-hb9"/>
+                                                                <outlet property="username2" destination="BrT-yH-NHR" id="1P9-mo-48g"/>
+                                                            </connections>
+                                                        </tableViewCell>
+                                                    </prototypes>
+                                                </tableView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="2mg-jR-BAx" firstAttribute="top" secondItem="e5r-Xa-ZiJ" secondAttribute="bottom" constant="8" id="3iZ-wF-iRK"/>
@@ -416,6 +481,7 @@
                                             <outlet property="sticker" destination="7ew-2R-BEj" id="yB2-xr-lhI"/>
                                             <outlet property="talkmessage" destination="e5r-Xa-ZiJ" id="7JF-zc-Apk"/>
                                             <outlet property="talkpraise" destination="2mg-jR-BAx" id="AL4-la-xmG"/>
+                                            <outlet property="talktable2" destination="3aD-Lh-6Ro" id="CzS-qb-SiS"/>
                                             <outlet property="username" destination="hUj-D6-Ctx" id="37L-pt-ofo"/>
                                         </connections>
                                     </tableViewCell>
